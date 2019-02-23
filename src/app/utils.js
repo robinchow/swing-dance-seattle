@@ -1,6 +1,7 @@
 import {
   DANCE_STYLE_MAP,
   DAY_MAP,
+  DAY_OF_WEEK_MAP,
   MONTH_MAP,
   RECURRENCE_TIME_EVERY,
   RECURRENCE_TIME_MAP
@@ -121,4 +122,16 @@ export const formatLink = link => {
   return link.includes("http://") || link.includes("https://")
     ? link
     : `https://${link}`;
+};
+
+export const daysStartingToday = () => {
+  // assumes DAY_OF_WEEK_MAP starts from "Sundays". Otherwise ... this breaks.
+  let dayNum = new Date().getDay();
+  const _list = DAY_OF_WEEK_MAP.slice(dayNum).concat(
+    DAY_OF_WEEK_MAP.slice(0, dayNum)
+  );
+  _list[0] = [..._list[0]]; // to avoid changing the original list
+  _list[0][0] = "Today";
+
+  return _list;
 };

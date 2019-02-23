@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { DAY_MAP } from "../constants";
+import { daysStartingToday } from "../utils";
 import { selectDancesByDay, selectDancesFetching } from "../state/selectors";
 import Page from "../components/page";
 import OccasionsList from "../components/occasions-list";
@@ -9,12 +9,12 @@ import OccasionsList from "../components/occasions-list";
 const DancesPage = ({ dances, loading }) => {
   return (
     <Page loading={loading}>
-      {DAY_MAP.map((day, index) => (
+      {daysStartingToday().map((dayInfo, index) => (
         <OccasionsList
           key={index}
-          heading={day}
+          heading={dayInfo[0]}
           headingClassName="uppercase"
-          occasions={dances[index]}
+          occasions={dances[dayInfo[1]]}
         />
       ))}
     </Page>

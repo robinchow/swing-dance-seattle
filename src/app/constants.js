@@ -32,6 +32,9 @@ export const DAY_MAP = [
   "Saturdays"
 ];
 
+// assumes DAY_MAP starts from "Sundays". Otherwise ... this breaks.
+export const DAY_OF_WEEK_MAP = DAY_MAP.map((day, index) => [day, index]);
+
 export const RECURRENCE_TIME_EVERY = "EVERY";
 export const RECURRENCE_TIME_FIRST = "FIRST";
 export const RECURRENCE_TIME_SECOND = "SECOND";
